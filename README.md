@@ -211,7 +211,7 @@ When using dev server CLI, you can easily use `--ws` and a named export called `
 
 ### `socket`
 
-Enables IPC Socket through unix domain sockets on unixoid systems and named pipes on windows (unix: `/tmp/listhen.socket`; windows: `\\?\pipe\listhen`).
+Enables IPC Socket through unix domain sockets on unixoid systems and named pipes on windows (unix: `/tmp/listhen.socket`; windows: `\\?\pipe\listhen`). It's also possible to pass an absolute socket path and full pipe path.
 
 ## License
 
