@@ -76,7 +76,7 @@ describe("listhen", () => {
     }
   });
   async function h3AppAssertions(ipcSocket: string, https: boolean) {
-    expect(listener!.url).toBe(ipcSocket);
+    expect(listener!.url).toBe(`unix+http${https ? "s" : ""}://${ipcSocket}`);
 
     await expect(ipcRequest(ipcSocket, "/", https)).resolves.toEqual({
       hello: "world!",
@@ -93,7 +93,7 @@ describe("listhen", () => {
   }
 
   async function handleAssertions(ipcSocket: string, https: boolean) {
-    expect(listener!.url).toBe(ipcSocket);
+    expect(listener!.url).toBe(`unix+http${https ? "s" : ""}://${ipcSocket}`);
 
     await expect(ipcRequest(ipcSocket, "/", https)).resolves.toEqual("/");
     await expect(ipcRequest(ipcSocket, "/path", https)).resolves.toEqual(
@@ -148,7 +148,7 @@ describe("listhen", () => {
       socket: ipcSocketName,
     });
 
-    expect(listener.url).toBe(ipcSocket);
+    expect(listener.url).toBe(`unix+http://${ipcSocket}`);
 
     await h3AppAssertions(ipcSocket, false);
   });
@@ -180,7 +180,7 @@ describe("listhen", () => {
         https: true,
       });
 
-      expect(listener.url).toBe(ipcSocket);
+      expect(listener.url).toBe(`unix+https://${ipcSocket}`);
 
       await handleAssertions(ipcSocket, true);
     });
